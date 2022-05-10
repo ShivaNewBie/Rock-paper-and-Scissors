@@ -1,24 +1,44 @@
-let rock = document.getElementById('rock')
-let scissor = document.getElementById('scissor')
-let paper = document.getElementById("paper");
+choices = ['rock','paper','scissor']
+playerWon = 0
+computerWon = 0
 
 
 
-function computerPlay(){
-    console.log('computer')
+
+function game(){
+    // for (let i = 1; i < 5; i++) {
+    //   playRound(i);
+    // }
+    playRound()
+ }
+
+function playRound(){
+    const playerSelection = playerChoice()
+    const computerSelection = computerChoice() 
+}
+  
+function playerChoice(){
+    let input = prompt('Please type rock, paper, and scissor')
+    while (choices.includes(input) == false){ //if input is not equal to choices the boolean will return false thus executing the while loop
+        input = prompt('Please type rock, paper, and scissor')
+    }
+    input = input.toLowerCase()
+    // console.log(input)
 }
 
-function playerSelection(){
-    console.log('test')
+function validateInput(choice){
+    if (choices.includes(choice)){
+        return true;
+    } else{
+        return false
+    }
+}
+
+function computerChoice(){
+    return choices[Math.floor(Math.random() * choices.length)]
 }
 
 
+game()
 
 
-// function playRound(playerSelection, computerSelection) {
-//     playerSelection = playerSelection
-// }
-
-// const playerSelection = "rock";
-// const computerSelection = computerPlay();
-// console.log(playRound(playerSelection, computerSelection));
