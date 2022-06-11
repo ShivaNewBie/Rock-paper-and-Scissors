@@ -2,14 +2,12 @@ choices = ["rock", "paper", "scissor"];
 playerScore = 0;
 computerScore = 0;
 
-for (let i = 0; i < 5; i++) {
-  console.log(hello);
-}
-
 function game() {
   while (playerScore != 5 || computerScore != 5) {
     playRound();
     if (playerScore == 5 || computerScore == 5) {
+      playerScore = 0;
+      computerScore = 0;
       break;
     }
   }
@@ -46,16 +44,14 @@ function playRound() {
 
 function playerChoice() {
   let input = prompt("Please type rock, paper, and scissor");
-  //     while (input == null) {
-  //             input = prompt("Type Rock, Paper, or Scissors");
-  //  }
+  if (input == null) {
+    playerScore = 0;
+    computerScore = 0;
+  }
   input = input.toLowerCase();
   while (choices.includes(input) == false) {
     //if input is not equal to choices the boolean will return false thus executing the while loop
     input = prompt("Please type rock, paper, and scissor");
-  }
-  while (input == null) {
-    break;
   }
   input = input.toLowerCase();
   return input;
