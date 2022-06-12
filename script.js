@@ -53,10 +53,8 @@ function playerChoice() {
     //if input is not equal to choices the boolean will return false thus executing the while loop
     input = prompt("Please type rock, paper, and scissor");
   }
-  input = input.toLowerCase();
   return input;
 }
-
 function computerChoice() {
   return choices[Math.floor(Math.random() * choices.length)];
 }
