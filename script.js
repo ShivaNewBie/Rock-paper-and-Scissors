@@ -1,27 +1,21 @@
 choices = ["rock", "paper", "scissor"];
+let playerSelection;
+let computerSelection;
 playerScore = 0;
 computerScore = 0;
 
-function game() {
-  while (playerScore != 5 || computerScore != 5) {
-    playRound();
-    if (playerScore == 5 || computerScore == 5) {
-      playerScore = 0;
-      computerScore = 0;
-      break;
-    }
-  }
-}
+const buttons = document.querySelectorAll("button");
 
-// function game(){
-//     for (let i = 1; i < 5; i++) {
-//       playRound(i);
-//     }
-//     playRound()
-//  }
+buttons.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    playerSelection = e.target.innerText;
+    // console.log(playerSelection);
+    playRound(playerSelection);
+    DeclareWinner();
+  });
+});
 
-function playRound() {
-  const playerSelection = playerChoice();
+function playRound(playerSelection) {
   const computerSelection = computerChoice();
   if (playerSelection == computerSelection) {
     console.log("tie");
@@ -42,19 +36,18 @@ function playRound() {
   }
 }
 
-function playerChoice() {
-  let input = prompt("Please type rock, paper, and scissor");
-  if (input == null) {
+function computerChoice() {
+  return choices[Math.floor(Math.random() * choices.length)];
+}
+
+function DeclareWinner() {
+  if (playerScore == 5) {
+    console.log("Player wins");
+    playerScore = 0;
+    computerScore = 0;
+  } else if (computerScore == 5) {
+    console.log("Computer wins");
     playerScore = 0;
     computerScore = 0;
   }
-  input = input.toLowerCase();
-  while (choices.includes(input) == false) {
-    //if input is not equal to choices the boolean will return false thus executing the while loop
-    input = prompt("Please type rock, paper, and scissor");
-  }
-  return input;
-}
-function computerChoice() {
-  return choices[Math.floor(Math.random() * choices.length)];
 }
